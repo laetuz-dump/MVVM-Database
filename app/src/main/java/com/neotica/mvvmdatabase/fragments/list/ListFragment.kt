@@ -5,12 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.neotica.mvvmdatabase.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import kotlinx.android.synthetic.main.fragment_list.view.*
 
 class ListFragment : Fragment() {
 
@@ -19,6 +16,17 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false)
+        //Step 11: Set/store inflatedLayout in the view variable.
+        val view1 = inflater.inflate(R.layout.fragment_list, container, false)
+
+        //Step 13: Use view1 to find the FAB and setOnClickListener.
+        view1.floatingActionButton.setOnClickListener {
+            //Step 14: Use NavHost Fragments to find NavController
+            //Step 15: Navigate listFragment to addFragment
+            findNavController().navigate(R.id.action_listFragment_to_addFragment)
+        }
+
+        //Step 12 return view1
+        return view1
     }
 }
