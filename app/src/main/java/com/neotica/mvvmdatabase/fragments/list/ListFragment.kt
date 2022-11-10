@@ -38,13 +38,13 @@ class ListFragment : Fragment() {
 
         //UserViewModel
         //Step 59: Initialize UserViewModel, use ViewModelProvider
-        //Step 60: Pass the context to this class and get the context from  UserViewModel.kt
+        //Step 60: Pass the context to this class and get the context from UserViewModel.kt
         mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         //Step 61: readAllData from listview using Observer
-        mUserViewModel.readAllData.observe(viewLifecycleOwner, Observer {
-            user ->
-            adapter.setData(user)
-        })
+        mUserViewModel.readAllData.observe(viewLifecycleOwner)
+        //Redundant old Code: Observer {user -> adapter.setData(user)}
+        //New:
+        { user -> adapter.setData(user) }
 
         //Step 13: Use view1 to find the FAB and setOnClickListener.
         view1.floatingActionButton.setOnClickListener {
