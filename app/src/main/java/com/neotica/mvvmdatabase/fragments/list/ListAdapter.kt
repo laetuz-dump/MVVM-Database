@@ -3,6 +3,7 @@ package com.neotica.mvvmdatabase.fragments.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.neotica.mvvmdatabase.R
 import com.neotica.mvvmdatabase.data.User
@@ -38,6 +39,18 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         holder.itemView.keyText.text = currentItem.id.toString()
         holder.itemView.nameText.text = currentItem.name
         holder.itemView.ageText.text = currentItem.age.toString()
+
+        //Step 71: Add Item Holder for rowLayout
+        //Step 72: Add a setOnClickListener{}
+        holder.itemView.rowLayout.setOnClickListener {
+            //Step 73: Add action variable inside the setOnClickListener
+            //Step 74: Use the ListFragmentDirections,
+            //Step 75: Add actionListFragmentToUpdateFragment and pass currentItem
+            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentItem)
+            //Step 76: Add Item Holder for findNavController
+            //Step 77: Navigate and pass to action
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -46,6 +59,7 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     }
 
     //Step 53: Create setData function to set the userList with the value which will be passed in the parameter
+    //In this project, the value was passed from our entity class: User.kt
     fun setData(user: List<User>){
         this.userList = user
         notifyDataSetChanged()
