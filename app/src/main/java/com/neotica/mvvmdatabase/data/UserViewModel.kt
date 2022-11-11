@@ -24,4 +24,11 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    //Step 97: Create new Update function
+    fun updateUser(user: User){
+        //Step 98: Create Coroutines
+        viewModelScope.launch(Dispatchers.IO) { repository.updateUser(user) }
+    }
+    //Step 99: Go back to the UpdateFragment.kt
+
 }
